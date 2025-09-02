@@ -1,199 +1,295 @@
-:root {
-            --primary: #3a86ff;
-            --secondary: #ff006e;
-            --accent: #8338ec;
-            --dark: #1a1a2e;
-            --light: #f8f9fa;
-            --success: #4cc9f0;
-            --warning: #ffbe0b;
-            --border-radius: 12px;
-            --box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-            --transition: all 0.3s ease;
-        }
-        
-        * {
+* {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Roboto', sans-serif;
         }
-        
+
         body {
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-            color: var(--light);
+            background: linear-gradient(135deg, #1a2980, #26d0ce);
+            color: #333;
+            line-height: 1.6;
+            padding: 15px;
             min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
         }
-        
+
         .container {
-            width: 100%;
-            max-width: 1200px;
+            max-width: 480px;
             margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            position: relative;
         }
-        
+
         header {
             text-align: center;
-            margin-bottom: 40px;
+            margin-bottom: 25px;
+            background: #0066cc;
+            margin: -20px -20px 25px -20px;
+            padding: 25px 20px;
+            border-radius: 12px 12px 0 0;
+            color: white;
         }
-        
+
         .logo {
-            width: 180px;
-            margin-bottom: 20px;
+            width: 120px;
+            margin: 0 auto 15px;
         }
-        
+
         h1 {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-            background: linear-gradient(to right, var(--primary), var(--accent));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            font-size: 22px;
+            margin-bottom: 8px;
+            color: white;
         }
-        
+
         .subtitle {
-            font-size: 1.2rem;
-            opacity: 0.8;
-            margin-bottom: 30px;
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 14px;
         }
-        
+
+        .tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .tab {
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 14px;
+            color: #777;
+            border-bottom: 2px solid transparent;
+        }
+
+        .tab.active {
+            color: #0066cc;
+            border-bottom: 2px solid #0066cc;
+            font-weight: 500;
+        }
+
         .packages-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
-            margin-bottom: 40px;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-bottom: 25px;
         }
-        
+
         .package {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: var(--border-radius);
-            padding: 30px;
+            background: white;
+            border-radius: 10px;
+            padding: 15px;
             text-align: center;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: var(--transition);
-            position: relative;
-            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+            border: 1px solid #ddd;
+            transition: transform 0.2s, box-shadow 0.2s;
         }
-        
+
         .package:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--box-shadow);
-            border-color: var(--primary);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
-        
-        .package.popular {
-            border: 2px solid var(--accent);
-            transform: scale(1.03);
-        }
-        
-        .package.popular::before {
-            content: 'MOST POPULAR';
-            position: absolute;
-            top: 15px;
-            right: -30px;
-            background: var(--accent);
-            color: white;
-            padding: 5px 30px;
-            font-size: 0.8rem;
-            transform: rotate(45deg);
-        }
-        
+
         .package-icon {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-            color: var(--primary);
-        }
-        
-        .package-title {
-            font-size: 1.5rem;
-            margin-bottom: 15px;
-            color: white;
-        }
-        
-        .package-description {
-            color: #aaa;
-            margin-bottom: 20px;
-            font-size: 0.95rem;
-            min-height: 60px;
-        }
-        
-        .package-price {
-            font-size: 2.2rem;
-            font-weight: 700;
-            margin-bottom: 25px;
-            color: white;
-        }
-        
-        .package-price span {
-            font-size: 1rem;
-            font-weight: 400;
-            opacity: 0.7;
-        }
-        
-        .package-features {
-            list-style: none;
-            margin-bottom: 25px;
-            text-align: left;
-        }
-        
-        .package-features li {
-            padding: 8px 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            width: 40px;
+            height: 40px;
+            margin: 0 auto 10px;
+            background: #f0f7ff;
+            border-radius: 50%;
             display: flex;
             align-items: center;
+            justify-content: center;
+            color: #0066cc;
+            font-size: 18px;
         }
-        
-        .package-features li i {
-            color: var(--success);
-            margin-right: 10px;
+
+        .package-title {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: #333;
         }
-        
+
+        .package-description {
+            font-size: 12px;
+            color: #888;
+            margin-bottom: 10px;
+            min-height: 32px;
+        }
+
+        .package-price {
+            font-weight: 700;
+            color: #0066cc;
+            font-size: 16px;
+            margin-bottom: 12px;
+        }
+
+        .package-price span {
+            font-size: 12px;
+            color: #888;
+            font-weight: normal;
+        }
+
         .buy-btn {
-            background: linear-gradient(to right, var(--primary), var(--accent));
+            background: #0066cc;
             color: white;
             border: none;
-            padding: 15px 30px;
-            border-radius: 50px;
+            padding: 8px 12px;
+            border-radius: 5px;
+            font-size: 13px;
+            font-weight: 500;
             cursor: pointer;
-            font-weight: 600;
             width: 100%;
-            transition: var(--transition);
-            font-size: 1.1rem;
+            transition: background 0.2s;
         }
-        
+
         .buy-btn:hover {
-            opacity: 0.9;
-            transform: translateY(-2px);
+            background: #0052a3;
         }
-        
+
+        .voucher-section {
+            background: #f0f7ff;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        .voucher-section h2 {
+            font-size: 18px;
+            color: #0066cc;
+            margin-bottom: 15px;
+        }
+
+        .voucher-input {
+            display: flex;
+            margin-bottom: 15px;
+        }
+
+        .voucher-input input {
+            flex: 1;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px 0 0 5px;
+            font-size: 14px;
+        }
+
+        .voucher-input button {
+            background: #0066cc;
+            color: white;
+            border: none;
+            padding: 0 15px;
+            border-radius: 0 5px 5px 0;
+            cursor: pointer;
+        }
+
+        .scan-btn {
+            background: #32C35C;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 5px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .scan-btn:hover {
+            background: #2aad51;
+        }
+
+        .customer-care {
+            background: #f9f9f9;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        .customer-care h2 {
+            font-size: 18px;
+            color: #0066cc;
+            margin-bottom: 15px;
+        }
+
+        .care-options {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .care-option {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 12px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+
+        .care-icon {
+            width: 40px;
+            height: 40px;
+            background: #f0f7ff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #0066cc;
+            font-size: 18px;
+        }
+
+        .care-info {
+            text-align: left;
+            flex: 1;
+        }
+
+        .care-info h3 {
+            font-size: 14px;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .care-info p {
+            font-size: 13px;
+            color: #666;
+        }
+
         .payment-methods {
             text-align: center;
-            margin-top: 40px;
-            padding-top: 30px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            margin-bottom: 20px;
         }
-        
+
         .payment-methods p {
-            margin-bottom: 15px;
-            opacity: 0.7;
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 10px;
         }
-        
+
         .payment-icons {
             display: flex;
             justify-content: center;
             gap: 15px;
-            font-size: 2rem;
+            font-size: 28px;
         }
-        
+
         .footer {
             text-align: center;
-            margin-top: 40px;
-            opacity: 0.7;
-            font-size: 0.9rem;
+            padding-top: 15px;
+            border-top: 1px solid #eee;
+            color: #888;
+            font-size: 12px;
         }
-        
+
+        /* Modal Styles */
         .modal {
             display: none;
             position: fixed;
@@ -201,57 +297,109 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(5px);
-            justify-content: center;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 100;
             align-items: center;
-            z-index: 1000;
+            justify-content: center;
         }
-        
+
         .modal-content {
-            background: #1e2a47;
-            border-radius: var(--border-radius);
-            padding: 30px;
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
             width: 90%;
-            max-width: 500px;
+            max-width: 400px;
             text-align: center;
             position: relative;
         }
-        
+
         .close-modal {
             position: absolute;
             top: 15px;
             right: 15px;
-            font-size: 1.5rem;
+            font-size: 24px;
             cursor: pointer;
-            color: #aaa;
+            color: #888;
         }
-        
+
+        .modal h2 {
+            color: #0066cc;
+            margin-bottom: 15px;
+        }
+
         .loader {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #0066cc;
+            border-radius: 50%;
             width: 50px;
             height: 50px;
-            border: 5px solid rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            border-top-color: var(--primary);
-            margin: 20px auto;
             animation: spin 1s linear infinite;
+            margin: 20px auto;
         }
-        
+
         @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
         }
-        
-        @media (max-width: 768px) {
+
+        .scanner-container {
+            width: 100%;
+            height: 250px;
+            background: #000;
+            margin: 15px 0;
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+        }
+
+        .scanner-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 2px solid #0066cc;
+            box-sizing: border-box;
+        }
+
+        .scan-line {
+            position: absolute;
+            height: 2px;
+            width: 100%;
+            background: #0066cc;
+            top: 50%;
+            animation: scan 2s linear infinite;
+        }
+
+        @keyframes scan {
+            0% {
+                top: 10%;
+            }
+
+            50% {
+                top: 90%;
+            }
+
+            100% {
+                top: 10%;
+            }
+        }
+
+        @media (max-width: 400px) {
             .packages-container {
                 grid-template-columns: 1fr;
             }
-            
-            h1 {
-                font-size: 2rem;
+
+            .container {
+                padding: 15px;
             }
-            
-            .package.popular {
-                transform: scale(1);
+
+            .package {
+                padding: 12px;
             }
         }

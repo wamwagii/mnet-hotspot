@@ -3,13 +3,340 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>mnet - Internet Access Packages</title>
+    <title>MNet - Internet Access Packages</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="icon" type="image/x-icon" href="public/favicon.ico">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles/styles.css">
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Roboto', sans-serif;
+        }
         
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+            padding: 15px;
+        }
+        
+        .container {
+            max-width: 480px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            padding: 20px;
+            position: relative;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+        
+        .logo {
+            width: 120px;
+            margin: 0 auto 15px;
+            color: #0066cc;
+        }
+        
+        h1 {
+            font-size: 22px;
+            color: #0066cc;
+            margin-bottom: 8px;
+        }
+        
+        .subtitle {
+            color: #666;
+            font-size: 14px;
+        }
+        
+        .tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .tab {
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 14px;
+            color: #777;
+            border-bottom: 2px solid transparent;
+        }
+        
+        .tab.active {
+            color: #0066cc;
+            border-bottom: 2px solid #0066cc;
+            font-weight: 500;
+        }
+        
+        .packages-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+        
+        .package {
+            background: white;
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+            border: 1px solid #eee;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        .package:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .package-icon {
+            width: 40px;
+            height: 40px;
+            margin: 0 auto 10px;
+            background: #f0f7ff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #0066cc;
+            font-size: 18px;
+        }
+        
+        .package-title {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: #333;
+        }
+        
+        .package-description {
+            font-size: 12px;
+            color: #888;
+            margin-bottom: 10px;
+            min-height: 32px;
+        }
+        
+        .package-price {
+            font-weight: 700;
+            color: #0066cc;
+            font-size: 16px;
+            margin-bottom: 12px;
+        }
+        
+        .package-price span {
+            font-size: 12px;
+            color: #888;
+            font-weight: normal;
+        }
+        
+        .buy-btn {
+            background: #0066cc;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 5px;
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+            width: 100%;
+            transition: background 0.2s;
+        }
+        
+        .buy-btn:hover {
+            background: #0052a3;
+        }
+        
+        .voucher-section {
+            background: #f0f7ff;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+        
+        .voucher-section h2 {
+            font-size: 18px;
+            color: #0066cc;
+            margin-bottom: 15px;
+        }
+        
+        .voucher-input {
+            display: flex;
+            margin-bottom: 15px;
+        }
+        
+        .voucher-input input {
+            flex: 1;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px 0 0 5px;
+            font-size: 14px;
+        }
+        
+        .voucher-input button {
+            background: #0066cc;
+            color: white;
+            border: none;
+            padding: 0 15px;
+            border-radius: 0 5px 5px 0;
+            cursor: pointer;
+        }
+        
+        .scan-btn {
+            background: #32C35C;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 5px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        
+        .scan-btn:hover {
+            background: #2aad51;
+        }
+        
+        .payment-methods {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .payment-methods p {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 10px;
+        }
+        
+        .payment-icons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            font-size: 28px;
+        }
+        
+        .footer {
+            text-align: center;
+            padding-top: 15px;
+            border-top: 1px solid #eee;
+            color: #888;
+            font-size: 12px;
+        }
+        
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 100;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal-content {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            width: 90%;
+            max-width: 400px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 24px;
+            cursor: pointer;
+            color: #888;
+        }
+        
+        .modal h2 {
+            color: #0066cc;
+            margin-bottom: 15px;
+        }
+        
+        .loader {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #0066cc;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .scanner-container {
+            width: 100%;
+            height: 250px;
+            background: #000;
+            margin: 15px 0;
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+        }
+        
+        .scanner-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 2px solid #0066cc;
+            box-sizing: border-box;
+        }
+        
+        .scan-line {
+            position: absolute;
+            height: 2px;
+            width: 100%;
+            background: #0066cc;
+            top: 50%;
+            animation: scan 2s linear infinite;
+        }
+        
+        @keyframes scan {
+            0% { top: 10%; }
+            50% { top: 90%; }
+            100% { top: 10%; }
+        }
+        
+        @media (max-width: 400px) {
+            .packages-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .container {
+                padding: 15px;
+            }
+            
+            .package {
+                padding: 12px;
+            }
+        }
     </style>
 </head>
 
@@ -17,57 +344,78 @@
     <div class="container">
         <header>
             <div class="logo">
-                <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 174 42" fill="#fff">
+                <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 174 42" fill="#0066cc">
                     <path d="M50,15h-9v-3h21v3h-9v27h-3V15z M80,39h-3V12h9v3h-6v9h4v3h-4v12H80z M107,15h-6v-3h15v3h-6v24h-3V15z M131,39h-3V12h9v3h-6v24H131z M164,39h-3l-9-27h3l7,23l7-23h3L164,39z"/>
                 </svg>
             </div>
             <h1>Welcome to MNet WiFi</h1>
-            <p class="subtitle">Select an internet package to get connected</p>
+            <p class="subtitle">Select an internet package or redeem a voucher</p>
         </header>
         
-        <div class="packages-container">
-            <!-- Hourly Package -->
-            <div class="package">
-                <div class="package-icon">
-                    <i class="fas fa-clock"></i>
+        <div class="tabs">
+            <div class="tab active" data-tab="packages">Packages</div>
+            <div class="tab" data-tab="voucher">Voucher</div>
+        </div>
+        
+        <div class="tab-content" id="packages-tab">
+            <div class="packages-container">
+                <!-- 3 Hour Package -->
+                <div class="package">
+                    <div class="package-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h3 class="package-title">3 Hour Access</h3>
+                    <p class="package-description">Quick browsing and emails</p>
+                    <div class="package-price">KES 15 <span>/ 3 hours</span></div>
+                    <button class="buy-btn" data-package="3hr">Select Plan</button>
                 </div>
-                <h3 class="package-title">Hourly Access</h3>
-                <p class="package-description">Perfect for quick browsing and emails</p>
-                <div class="package-price">KES 50 <span>/ hour</span></div>
-                <button class="buy-btn" data-package="1hr">Select Plan</button>
+                
+                <!-- 6 Hour Package -->
+                <div class="package">
+                    <div class="package-icon">
+                        <i class="fas fa-hourglass-half"></i>
+                    </div>
+                    <h3 class="package-title">6 Hour Access</h3>
+                    <p class="package-description">Extended browsing session</p>
+                    <div class="package-price">KES 25 <span>/ 6 hours</span></div>
+                    <button class="buy-btn" data-package="6hr">Select Plan</button>
+                </div>
+                
+                <!-- Daily Package -->
+                <div class="package">
+                    <div class="package-icon">
+                        <i class="fas fa-sun"></i>
+                    </div>
+                    <h3 class="package-title">Daily Access</h3>
+                    <p class="package-description">Stay connected all day</p>
+                    <div class="package-price">KES 200 <span>/ 24 hours</span></div>
+                    <button class="buy-btn" data-package="1day">Select Plan</button>
+                </div>
+                
+                <!-- Weekly Package -->
+                <div class="package">
+                    <div class="package-icon">
+                        <i class="fas fa-calendar-week"></i>
+                    </div>
+                    <h3 class="package-title">Weekly Access</h3>
+                    <p class="package-description">Ideal for extended stays</p>
+                    <div class="package-price">KES 1,000 <span>/ 7 days</span></div>
+                    <button class="buy-btn" data-package="1week">Select Plan</button>
+                </div>
             </div>
-            
-            <!-- Daily Package -->
-            <div class="package popular">
-                <div class="package-icon">
-                    <i class="fas fa-sun"></i>
+        </div>
+        
+        <div class="tab-content" id="voucher-tab" style="display: none;">
+            <div class="voucher-section">
+                <h2>Redeem Your Voucher</h2>
+                <div class="voucher-input">
+                    <input type="text" id="voucher-code" placeholder="Enter voucher code">
+                    <button id="verify-voucher"><i class="fas fa-check"></i></button>
                 </div>
-                <h3 class="package-title">Daily Access</h3>
-                <p class="package-description">Stay connected throughout your day</p>
-                <div class="package-price">KES 200 <span>/ 24 hours</span></div>
-                <button class="buy-btn" data-package="1day">Select Plan</button>
-            </div>
-            
-            <!-- Weekly Package -->
-            <div class="package">
-                <div class="package-icon">
-                    <i class="fas fa-calendar-week"></i>
-                </div>
-                <h3 class="package-title">Weekly Access</h3>
-                <p class="package-description">Ideal for extended stays</p>
-                <div class="package-price">KES 1,000 <span>/ 7 days</span></div>
-                <button class="buy-btn" data-package="1week">Select Plan</button>
-            </div>
-            
-            <!-- Monthly Package -->
-            <div class="package">
-                <div class="package-icon">
-                    <i class="fas fa-calendar-alt"></i>
-                </div>
-                <h3 class="package-title">Monthly Access</h3>
-                <p class="package-description">The best value for long-term use</p>
-                <div class="package-price">KES 1,000 <span>/ 30 days</span></div>
-                <button class="buy-btn" data-package="1month">Select Plan</button>
+                <p>Or</p>
+                <button class="scan-btn" id="scan-qr">
+                    <i class="fas fa-camera"></i> Scan QR Code
+                </button>
             </div>
         </div>
         
@@ -82,7 +430,7 @@
         </div>
         
         <div class="footer">
-            <p> © 2025 MNet WiFi. All rights reserved.</p>
+            <p>© 2025 MNet WiFi. All rights reserved.</p>
         </div>
     </div>
     
@@ -96,12 +444,63 @@
             <p>You will be connected automatically after successful payment.</p>
         </div>
     </div>
+    
+    <!-- Voucher Verification Modal -->
+    <div class="modal" id="voucher-modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Verifying Voucher</h2>
+            <div class="loader"></div>
+            <p>Please wait while we verify your voucher code...</p>
+        </div>
+    </div>
+    
+    <!-- QR Scanner Modal -->
+    <div class="modal" id="scanner-modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Scan QR Code</h2>
+            <div class="scanner-container">
+                <div class="scanner-overlay">
+                    <div class="scan-line"></div>
+                </div>
+            </div>
+            <p>Position the QR code within the frame</p>
+            <button class="scan-btn" style="margin-top: 15px;">
+                <i class="fas fa-camera"></i> Use Image Instead
+            </button>
+        </div>
+    </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            const tabs = document.querySelectorAll('.tab');
+            const packageTab = document.getElementById('packages-tab');
+            const voucherTab = document.getElementById('voucher-tab');
             const buyButtons = document.querySelectorAll('.buy-btn');
-            const modal = document.getElementById('payment-modal');
-            const closeModal = document.querySelector('.close-modal');
+            const paymentModal = document.getElementById('payment-modal');
+            const voucherModal = document.getElementById('voucher-modal');
+            const scannerModal = document.getElementById('scanner-modal');
+            const verifyVoucherBtn = document.getElementById('verify-voucher');
+            const scanQrBtn = document.getElementById('scan-qr');
+            const closeModalButtons = document.querySelectorAll('.close-modal');
+            const voucherCodeInput = document.getElementById('voucher-code');
+            
+            // Tab switching
+            tabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    tabs.forEach(t => t.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    if (this.dataset.tab === 'packages') {
+                        packageTab.style.display = 'block';
+                        voucherTab.style.display = 'none';
+                    } else {
+                        packageTab.style.display = 'none';
+                        voucherTab.style.display = 'block';
+                    }
+                });
+            });
             
             // Handle package selection
             buyButtons.forEach(button => {
@@ -110,7 +509,7 @@
                     const userMac = '$(mac)'; // This will be replaced by MikroTik
                     
                     // Show processing modal
-                    modal.style.display = 'flex';
+                    paymentModal.style.display = 'flex';
                     
                     // Simulate API call to payment gateway
                     setTimeout(() => {
@@ -119,20 +518,63 @@
                         
                         // For demo purposes, we'll just show a success message after a delay
                         alert('Payment successful! You are now being connected to the internet.');
-                        modal.style.display = 'none';
+                        paymentModal.style.display = 'none';
                     }, 3000);
                 });
             });
             
-            // Close modal
-            closeModal.addEventListener('click', function() {
-                modal.style.display = 'none';
+            // Handle voucher verification
+            verifyVoucherBtn.addEventListener('click', function() {
+                const voucherCode = voucherCodeInput.value.trim();
+                
+                if (voucherCode.length === 0) {
+                    alert('Please enter a voucher code');
+                    return;
+                }
+                
+                voucherModal.style.display = 'flex';
+                
+                // Simulate voucher verification
+                setTimeout(() => {
+                    // In a real implementation, this would verify the voucher via API
+                    // For demo purposes, we'll assume it's valid after a delay
+                    voucherModal.style.display = 'none';
+                    alert('Voucher verified successfully! You are now connected.');
+                }, 2000);
+            });
+            
+            // Handle QR code scanning
+            scanQrBtn.addEventListener('click', function() {
+                scannerModal.style.display = 'flex';
+                
+                // In a real implementation, this would initialize the camera and QR scanner
+                // For demo purposes, we'll simulate scanning after a delay
+                setTimeout(() => {
+                    scannerModal.style.display = 'none';
+                    voucherCodeInput.value = 'MNET-VOUCHER-12345';
+                    alert('QR code scanned successfully! Click verify to redeem.');
+                }, 3000);
+            });
+            
+            // Close modals
+            closeModalButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    paymentModal.style.display = 'none';
+                    voucherModal.style.display = 'none';
+                    scannerModal.style.display = 'none';
+                });
             });
             
             // Close modal if clicked outside
             window.addEventListener('click', function(event) {
-                if (event.target === modal) {
-                    modal.style.display = 'none';
+                if (event.target === paymentModal) {
+                    paymentModal.style.display = 'none';
+                }
+                if (event.target === voucherModal) {
+                    voucherModal.style.display = 'none';
+                }
+                if (event.target === scannerModal) {
+                    scannerModal.style.display = 'none';
                 }
             });
         });

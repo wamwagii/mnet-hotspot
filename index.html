@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MNet - Internet Access Packages</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="icon" type="image/x-icon" href="public/favicon.ico">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
         * {
@@ -16,10 +15,11 @@
         }
         
         body {
-            background-color: #f5f7fa;
+            background: linear-gradient(135deg, #1a2980, #26d0ce);
             color: #333;
             line-height: 1.6;
             padding: 15px;
+            min-height: 100vh;
         }
         
         .container {
@@ -27,7 +27,7 @@
             margin: 0 auto;
             background: white;
             border-radius: 12px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
             padding: 20px;
             position: relative;
         }
@@ -35,22 +35,26 @@
         header {
             text-align: center;
             margin-bottom: 25px;
+            background: #0066cc;
+            margin: -20px -20px 25px -20px;
+            padding: 25px 20px;
+            border-radius: 12px 12px 0 0;
+            color: white;
         }
         
         .logo {
             width: 120px;
             margin: 0 auto 15px;
-            color: #0066cc;
         }
         
         h1 {
             font-size: 22px;
-            color: #0066cc;
             margin-bottom: 8px;
+            color: white;
         }
         
         .subtitle {
-            color: #666;
+            color: rgba(255, 255, 255, 0.9);
             font-size: 14px;
         }
         
@@ -87,8 +91,8 @@
             border-radius: 10px;
             padding: 15px;
             text-align: center;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
-            border: 1px solid #eee;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+            border: 1px solid #ddd;
             transition: transform 0.2s, box-shadow 0.2s;
         }
         
@@ -208,6 +212,64 @@
         
         .scan-btn:hover {
             background: #2aad51;
+        }
+        
+        .customer-care {
+            background: #f9f9f9;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+        
+        .customer-care h2 {
+            font-size: 18px;
+            color: #0066cc;
+            margin-bottom: 15px;
+        }
+        
+        .care-options {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .care-option {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 12px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+        
+        .care-icon {
+            width: 40px;
+            height: 40px;
+            background: #f0f7ff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #0066cc;
+            font-size: 18px;
+        }
+        
+        .care-info {
+            text-align: left;
+            flex: 1;
+        }
+        
+        .care-info h3 {
+            font-size: 14px;
+            color: #333;
+            margin-bottom: 5px;
+        }
+        
+        .care-info p {
+            font-size: 13px;
+            color: #666;
         }
         
         .payment-methods {
@@ -344,7 +406,7 @@
     <div class="container">
         <header>
             <div class="logo">
-                <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 174 42" fill="#0066cc">
+                <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 174 42" fill="#fff">
                     <path d="M50,15h-9v-3h21v3h-9v27h-3V15z M80,39h-3V12h9v3h-6v9h4v3h-4v12H80z M107,15h-6v-3h15v3h-6v24h-3V15z M131,39h-3V12h9v3h-6v24H131z M164,39h-3l-9-27h3l7,23l7-23h3L164,39z"/>
                 </svg>
             </div>
@@ -416,6 +478,39 @@
                 <button class="scan-btn" id="scan-qr">
                     <i class="fas fa-camera"></i> Scan QR Code
                 </button>
+            </div>
+        </div>
+        
+        <div class="customer-care">
+            <h2>Customer Care Support</h2>
+            <div class="care-options">
+                <div class="care-option">
+                    <div class="care-icon">
+                        <i class="fas fa-phone"></i>
+                    </div>
+                    <div class="care-info">
+                        <h3>Call Us</h3>
+                        <p>+254 700 123 456</p>
+                    </div>
+                </div>
+                <div class="care-option">
+                    <div class="care-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div class="care-info">
+                        <h3>Email Us</h3>
+                        <p>support@mnet.co.ke</p>
+                    </div>
+                </div>
+                <div class="care-option">
+                    <div class="care-icon">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                    <div class="care-info">
+                        <h3>Live Chat</h3>
+                        <p>Available 24/7</p>
+                    </div>
+                </div>
             </div>
         </div>
         

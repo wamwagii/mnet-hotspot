@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mnet - Internet Access Packages</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" type="image/x-icon" href="public/favicon.ico">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles/styles.css">
+    <style>
+        
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 174 42" fill="#fff">
+                    <path d="M50,15h-9v-3h21v3h-9v27h-3V15z M80,39h-3V12h9v3h-6v9h4v3h-4v12H80z M107,15h-6v-3h15v3h-6v24h-3V15z M131,39h-3V12h9v3h-6v24H131z M164,39h-3l-9-27h3l7,23l7-23h3L164,39z"/>
+                </svg>
+            </div>
+            <h1>Welcome to MNet WiFi</h1>
+            <p class="subtitle">Select an internet package to get connected</p>
+        </header>
+        
+        <div class="packages-container">
+            <!-- Hourly Package -->
+            <div class="package">
+                <div class="package-icon">
+                    <i class="fas fa-clock"></i>
+                </div>
+                <h3 class="package-title">Hourly Access</h3>
+                <p class="package-description">Perfect for quick browsing and emails</p>
+                <div class="package-price">KES 50 <span>/ hour</span></div>
+                <ul class="package-features">
+                    <li><i class="fas fa-check"></i> High-speed internet</li>
+                    <li><i class="fas fa-check"></i> Browse social media</li>
+                    <li><i class="fas fa-check"></i> Check emails</li>
+                    <li><i class="fas fa-check"></i> Standard definition streaming</li>
+                </ul>
+                <button class="buy-btn" data-package="1hr">Select Plan</button>
+            </div>
+            
+            <!-- Daily Package -->
+            <div class="package popular">
+                <div class="package-icon">
+                    <i class="fas fa-sun"></i>
+                </div>
+                <h3 class="package-title">Daily Access</h3>
+                <p class="package-description">Stay connected throughout your day</p>
+                <div class="package-price">KES 200 <span>/ 24 hours</span></div>
+                <ul class="package-features">
+                    <li><i class="fas fa-check"></i> Everything in Hourly</li>
+                    <li><i class="fas fa-check"></i> HD streaming</li>
+                    <li><i class="fas fa-check"></i> Online gaming</li>
+                    <li><i class="fas fa-check"></i> Download large files</li>
+                </ul>
+                <button class="buy-btn" data-package="1day">Select Plan</button>
+            </div>
+            
+            <!-- Weekly Package -->
+            <div class="package">
+                <div class="package-icon">
+                    <i class="fas fa-calendar-week"></i>
+                </div>
+                <h3 class="package-title">Weekly Access</h3>
+                <p class="package-description">Ideal for extended stays</p>
+                <div class="package-price">KES 1,000 <span>/ 7 days</span></div>
+                <ul class="package-features">
+                    <li><i class="fas fa-check"></i> Everything in Daily</li>
+                    <li><i class="fas fa-check"></i> Multiple device support</li>
+                    <li><i class="fas fa-check"></i> Priority bandwidth</li>
+                    <li><i class="fas fa-check"></i> 24/7 customer support</li>
+                </ul>
+                <button class="buy-btn" data-package="1week">Select Plan</button>
+            </div>
+            
+            <!-- Monthly Package -->
+            <div class="package">
+                <div class="package-icon">
+                    <i class="fas fa-calendar-alt"></i>
+                </div>
+                <h3 class="package-title">Monthly Access</h3>
+                <p class="package-description">The best value for long-term use</p>
+                <div class="package-price">KES 1,000 <span>/ 30 days</span></div>
+                <ul class="package-features">
+                    <li><i class="fas fa-check"></i> Everything in Weekly</li>
+                    <li><i class="fas fa-check"></i> Unlimited devices</li>
+                    <li><i class="fas fa-check"></i> Highest priority bandwidth</li>
+                    <li><i class="fas fa-check"></i> Free setup assistance</li>
+                </ul>
+                <button class="buy-btn" data-package="1month">Select Plan</button>
+            </div>
+        </div>
+        
+        <div class="payment-methods">
+            <p>We accept the following payment methods:</p>
+            <div class="payment-icons">
+                <i class="fab fa-cc-mpesa" style="color: #32C35C;"></i>
+                <i class="fab fa-cc-visa" style="color: #1a1a8e;"></i>
+                <i class="fab fa-cc-mastercard" style="color: #eb001b;"></i>
+                <i class="fab fa-cc-paypal" style="color: #0070ba;"></i>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>Powered by MikroTik RouterOS | © 2025 MNet WiFi. All rights reserved.</p>
+        </div>
+    </div>
+    
+    <!-- Payment Processing Modal -->
+    <div class="modal" id="payment-modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Processing Your Payment</h2>
+            <div class="loader"></div>
+            <p>Please wait while we redirect you to our secure payment gateway...</p>
+            <p>You will be connected automatically after successful payment.</p>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const buyButtons = document.querySelectorAll('.buy-btn');
+            const modal = document.getElementById('payment-modal');
+            const closeModal = document.querySelector('.close-modal');
+            
+            // Handle package selection
+            buyButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const packageId = this.getAttribute('data-package');
+                    const userMac = '$(mac)'; // This will be replaced by MikroTik
+                    
+                    // Show processing modal
+                    modal.style.display = 'flex';
+                    
+                    // Simulate API call to payment gateway
+                    setTimeout(() => {
+                        // In a real implementation, this would redirect to the payment gateway
+                        // window.location.href = `https://your-secure-api.com/initiate-payment?package=${packageId}&mac=${encodeURIComponent(userMac)}`;
+                        
+                        // For demo purposes, we'll just show a success message after a delay
+                        alert('Payment successful! You are now being connected to the internet.');
+                        modal.style.display = 'none';
+                    }, 3000);
+                });
+            });
+            
+            // Close modal
+            closeModal.addEventListener('click', function() {
+                modal.style.display = 'none';
+            });
+            
+            // Close modal if clicked outside
+            window.addEventListener('click', function(event) {
+                if (event.target === modal) {
+                    modal.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
